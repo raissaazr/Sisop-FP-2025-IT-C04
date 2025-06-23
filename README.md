@@ -16,10 +16,10 @@
 
 Nama | NRP
 --- | ---
-... | 5027241xxx
-... | 5027241xxx
-... | 5027241xxx
-... | 5027241xxx
+Tiara Putri Prasetya | 5027241013
+Azaria Raissa Maulidinnisa | 5027241043
+Thariq Kyran Aryunaldi | 5027241073
+Afriza Tristan Calendra Rajasa | 5027241104
 
 ## Deskripsi Soal
 
