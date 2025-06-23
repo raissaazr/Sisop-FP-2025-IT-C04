@@ -1,4 +1,3 @@
-# Sisop-FP-2025-IT-C04
 # Final Project Sistem Operasi IT
 
 ## Peraturan
