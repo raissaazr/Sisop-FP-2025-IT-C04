@@ -23,9 +23,8 @@ Nama | NRP
 
 ## Deskripsi Soal
 
-> Insert testcase... (contoh dibawah) // hapus line ini
-
-Memahami race condition pada operasi check-then-act. Program membuat 2 thread; tiap thread mencoba mengambil satu-satunya sumber daya yang tersedia dari variabel global stok (nilai awal 1). Jika tanpa mutex, kedua thread bisa lolos pengecekan dan sama-sama mengambil sumber daya, menghasilkan nilai akhir stok menjadi -1.
+Threaded File Downloader Simulation (12)
+Buatlah program yang mensimulasikan tiga thread downloader, di mana masing-masing thread akan menerima ID dan delay yang berbeda. Setiap thread mencetak pesan saat mulai, melakukan sleep sesuai delay-nya (misal, thread 1 delay 2 detik, thread 2 delay 4 detik, dst.), lalu mencetak pesan selesai. Jalankan ketiga thread ini secara paralel, sehingga urutan pesan selesai dapat berbeda-beda tergantung waktu sleep masing-masing. Program ini bertujuan untuk menunjukkan bahwa thread berjalan paralel, bukan secara berurutan.
 
 ### Catatan
 
