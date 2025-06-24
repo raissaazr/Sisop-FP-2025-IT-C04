@@ -48,7 +48,6 @@ Pada C (POSIX), kita bisa membuat thread dengan library `pthread`. Fungsi pentin
 - `sleep()` untuk mensimulasikan delay/tunda
 
 Thread berguna untuk simulasi seperti download paralel, pemrosesan serentak, UI responsif, dll.
-...
 
 **Solusi**
 1. Menggunakan `pthread` untuk membuat 3 thread downloader
@@ -57,7 +56,7 @@ for (int i = 0; i < 3; i++) {
     pthread_create(&threads[i], NULL, downloader_thread, (void*)&thread_data[i]);
 }
 ```
-Kode ini membuat 3 thread secara paralel dengan `pthread_create`, dan setiap thread menjalankan fungsi `downloader_thread`.
+Kode ini membuat 3 thread secara paralel dengan `pthread_create`, dan setiap thread menjalankan fungsi `downloader_thread`.<br>
 2. Masing-masing thread menerima input delay dari user
 ```
 for (int i = 0; i < 3; i++) {
@@ -66,7 +65,7 @@ for (int i = 0; i < 3; i++) {
     scanf("%d", &thread_data[i].delay_seconds);
 }
 ```
-Kode ini meminta input delay dari pengguna, dan menyimpan ke dalam struktur data untuk masing-masing thread.
+Kode ini meminta input delay dari pengguna, dan menyimpan ke dalam struktur data untuk masing-masing thread.<br>
 3. Setiap thread mencetak pesan mulai, melakukan `sleep()`, lalu mencetak pesan selesai
 ```
 void* downloader_thread(void* arg) {
@@ -79,7 +78,7 @@ void* downloader_thread(void* arg) {
     return NULL;
 }
 ```
-Fungsi ini dijalankan oleh setiap thread. Ia mencetak pesan mulai, melakukan delay dengan sleep, lalu mencetak pesan selesai.
+Fungsi ini dijalankan oleh setiap thread. Ia mencetak pesan mulai, melakukan delay dengan sleep, lalu mencetak pesan selesai.<br>
 4. `pthread_join()` digunakan agar program utama menunggu semua thread selesai
 ```
 for (int i = 0; i < 3; i++) {
