@@ -23,7 +23,7 @@ Afriza Tristan Calendra Rajasa | 5027241104
 
 ## Deskripsi Soal
 
-Threaded File Downloader Simulation (12)
+Threaded File Downloader Simulation (12)<br>
 Buatlah program yang mensimulasikan tiga thread downloader, di mana masing-masing thread akan menerima ID dan delay yang berbeda. Setiap thread mencetak pesan saat mulai, melakukan sleep sesuai delay-nya (misal, thread 1 delay 2 detik, thread 2 delay 4 detik, dst.), lalu mencetak pesan selesai. Jalankan ketiga thread ini secara paralel, sehingga urutan pesan selesai dapat berbeda-beda tergantung waktu sleep masing-masing. Program ini bertujuan untuk menunjukkan bahwa thread berjalan paralel, bukan secara berurutan.
 
 ### Catatan
