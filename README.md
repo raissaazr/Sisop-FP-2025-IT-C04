@@ -27,14 +27,9 @@ Threaded File Downloader Simulation (12)<br>
 Buatlah program yang mensimulasikan tiga thread downloader, di mana masing-masing thread akan menerima ID dan delay yang berbeda. Setiap thread mencetak pesan saat mulai, melakukan sleep sesuai delay-nya (misal, thread 1 delay 2 detik, thread 2 delay 4 detik, dst.), lalu mencetak pesan selesai. Jalankan ketiga thread ini secara paralel, sehingga urutan pesan selesai dapat berbeda-beda tergantung waktu sleep masing-masing. Program ini bertujuan untuk menunjukkan bahwa thread berjalan paralel, bukan secara berurutan.
 
 ### Catatan
-
-> Insert catatan dari pengerjaan kalian... (contoh dibawah) // hapus line ini
-
-Struktur repository:
-```
-.
-..
-```
+-Dalam pengerjaan simulasi downloader paralel ini, kami mempelajari cara menggunakan thread (pthread) di C.<br>
+-Urutan eksekusi thread bisa berbeda-beda tergantung delay yang diberikan, bukan urutan pembuatan.<br>
+-Input delay dibuat fleksibel agar user bisa mencoba berbagai kombinasi dan melihat hasil paralelismenya.<br>
 
 ## Pengerjaan
 ### Multithreading
