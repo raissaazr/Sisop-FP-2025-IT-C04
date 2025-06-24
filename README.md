@@ -86,7 +86,6 @@ for (int i = 0; i < 3; i++) {
 }
 ```
 Looping ini memastikan program utama menunggu semua thread downloader selesai sebelum mencetak "Program berakhir".
-...
 
 **Video Menjalankan Program**
 ...
