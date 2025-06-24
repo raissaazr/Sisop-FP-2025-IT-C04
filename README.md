@@ -83,6 +83,7 @@ for (int i = 0; i < 3; i++) {
 Looping ini memastikan program utama menunggu semua thread downloader selesai sebelum mencetak "Program berakhir".
 
 ### Output
+
 ![fp sisop](https://github.com/user-attachments/assets/a781a5e5-ceee-4663-b7ed-464f7edbe7d)
 
 
