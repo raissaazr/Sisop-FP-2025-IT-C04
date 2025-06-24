@@ -96,9 +96,24 @@ https://github.com/user-attachments/assets/f2884791-e4b9-4438-bae1-82df5056bafd
 ## Daftar Pustaka
 
 Sitasi 1
-Sitasi 2
-Sitasi 3
+<br>
+Silberschatz, A., Galvin, P. B., & Gagne, G. (2020). Operating System Concepts (10th ed.). Wiley.
 
+Penjelasan:
+Buku ini merupakan referensi utama dalam studi sistem operasi. Di dalamnya terdapat pembahasan tentang konsep thread, perbedaan antara thread dan proses, serta bagaimana thread meningkatkan efisiensi pemrosesan dengan berbagi memori proses induk. Konsep yang dijelaskan mencakup multithreading user-level dan kernel-level, sangat cocok untuk mendasari simulasi downloader paralel. <br>
+
+Sitasi 2
+<br> Butenhof, D. R. (1997). Programming with POSIX Threads. Addison-Wesley.
+
+Penjelasan:
+Buku ini secara khusus membahas pemrograman POSIX thread (pthreads) dalam bahasa C. Anda bisa menemukan pembahasan langsung mengenai fungsi pthread_create(), pthread_join(), serta praktik pengelolaan thread dengan struktur data. Buku ini cocok dijadikan rujukan utama untuk proyek Anda karena sesuai dengan lingkungan pengembangan Unix/Linux berbasis C.<br>
+
+Sitasi 3
+<br>
+Kerrisk, M. (2010). The Linux Programming Interface: A Linux and UNIX System Programming Handbook. No Starch Press.
+
+Penjelasan:
+Buku ini adalah panduan lengkap untuk pemrograman sistem di Linux. Bagian tentang multithreading menjelaskan implementasi teknis dari pthread, cara sinkronisasi thread, dan penanganan kesalahan pada pthread_create dan pthread_join. Relevan untuk memahami bagaimana program downloader Anda berjalan paralel dalam konteks sistem Linux modern.
 
 
 
