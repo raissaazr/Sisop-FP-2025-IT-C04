@@ -95,7 +95,7 @@ https://github.com/user-attachments/assets/f2884791-e4b9-4438-bae1-82df5056bafd
 
 ## Daftar Pustaka
 
-## Silberschatz, A., Galvin, P. B., & Gagne, G. (2020). Operating System Concepts (10th ed.). Wiley.<br>
+### Silberschatz, A., Galvin, P. B., & Gagne, G. (2020). Operating System Concepts (10th ed.). Wiley.<br>
 Buku ini merupakan referensi utama dalam studi sistem operasi. Di dalamnya terdapat pembahasan tentang konsep thread, perbedaan antara thread dan proses, serta bagaimana thread meningkatkan efisiensi pemrosesan dengan berbagi memori proses induk. Konsep yang dijelaskan mencakup multithreading user-level dan kernel-level, sangat cocok untuk mendasari simulasi downloader paralel. 
 
 ### Butenhof, D. R. (1997). Programming with POSIX Threads. Addison-Wesley.<br>
