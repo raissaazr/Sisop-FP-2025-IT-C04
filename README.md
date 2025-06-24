@@ -84,7 +84,7 @@ Looping ini memastikan program utama menunggu semua thread downloader selesai se
 
 ### Output
 
-![fp sisop](https://github.com/user-attachments/assets/a781a5e5-ceee-4663-b7ed-464f7edbe7d)
+![Output](https://github.com/user-attachments/assets/d1176d61-2322-493b-b19b-0dc90d9d5993)
 
 
 **Video Menjalankan Program**<br>
