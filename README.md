@@ -48,14 +48,56 @@ Struktur repository:
 
 ...
 
-> Insert poin soal...
+### Multithreading
 
 **Teori**
+Multithreading adalah teknik pemrograman di mana sebuah proses menciptakan beberapa thread untuk melakukan tugas-tugas secara paralel. Dalam sistem operasi, thread berbagi memori dan sumber daya dari proses induknya, sehingga lebih efisien dibandingkan proses terpisah.
 
+Pada C (POSIX), kita bisa membuat thread dengan library `pthread`. Fungsi pentingnya antara lain:
+- `pthread_create()` untuk membuat thread
+- `pthread_join()` untuk menunggu thread selesai
+- `sleep()` untuk mensimulasikan delay/tunda
+
+Thread berguna untuk simulasi seperti download paralel, pemrosesan serentak, UI responsif, dll.
 ...
 
 **Solusi**
+1. Menggunakan `pthread` untuk membuat 3 thread downloader
+```
+for (int i = 0; i < 3; i++) {
+    pthread_create(&threads[i], NULL, downloader_thread, (void*)&thread_data[i]);
+}
+```
+Kode ini membuat 3 thread secara paralel dengan `pthread_create`, dan setiap thread menjalankan fungsi `downloader_thread`.
+2. Masing-masing thread menerima input delay dari user
+```
+for (int i = 0; i < 3; i++) {
+    thread_data[i].id = i + 1;
+    printf("Masukkan durasi pengunduhan untuk Downloader %d (dalam detik): ", thread_data[i].id);
+    scanf("%d", &thread_data[i].delay_seconds);
+}
+```
+Kode ini meminta input delay dari pengguna, dan menyimpan ke dalam struktur data untuk masing-masing thread.
+3. Setiap thread mencetak pesan mulai, melakukan `sleep()`, lalu mencetak pesan selesai
+```
+void* downloader_thread(void* arg) {
+    ThreadData* data = (ThreadData*)arg;
 
+    printf("Downloader %d: Memulai pengunduhan, akan membutuhkan waktu %d detik.\n", data->id, data->delay_seconds);
+    sleep(data->delay_seconds);
+    printf("Downloader %d: Pengunduhan selesai.\n", data->id);
+
+    return NULL;
+}
+```
+Fungsi ini dijalankan oleh setiap thread. Ia mencetak pesan mulai, melakukan delay dengan sleep, lalu mencetak pesan selesai.
+4. `pthread_join()` digunakan agar program utama menunggu semua thread selesai
+```
+for (int i = 0; i < 3; i++) {
+    pthread_join(threads[i], NULL);
+}
+```
+Looping ini memastikan program utama menunggu semua thread downloader selesai sebelum mencetak "Program berakhir".
 ...
 
 **Video Menjalankan Program**
