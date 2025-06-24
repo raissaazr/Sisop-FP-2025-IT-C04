@@ -37,20 +37,9 @@ Struktur repository:
 ```
 
 ## Pengerjaan
-
-> Insert poin soal...
-
-**Teori**
-
-...
-
-**Solusi**
-
-...
-
 ### Multithreading
 
-**Teori**
+**Teori**<br>
 Multithreading adalah teknik pemrograman di mana sebuah proses menciptakan beberapa thread untuk melakukan tugas-tugas secara paralel. Dalam sistem operasi, thread berbagi memori dan sumber daya dari proses induknya, sehingga lebih efisien dibandingkan proses terpisah.
 
 Pada C (POSIX), kita bisa membuat thread dengan library `pthread`. Fungsi pentingnya antara lain:
