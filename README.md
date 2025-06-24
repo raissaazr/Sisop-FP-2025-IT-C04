@@ -86,12 +86,8 @@ Looping ini memastikan program utama menunggu semua thread downloader selesai se
 ![fp sisop](https://github.com/user-attachments/assets/a781a5e5-ceee-4663-b7ed-464f7edbe7de)
 
 
-**Video Menjalankan Program**
-<video width="600" controls>
-  <source src="https://drive.google.com/file/d/1J50AMJRSo8YOiwLbmkR0TMlxmwUxZXnM/view?usp=drive_link" type="video/mp4">
-</video>
-
-//https://github.com/user-attachments/assets/bf6effd8-a216-4ae7-9cf1-5378ee192d8e
+**Video Menjalankan Program**<br>
+https://github.com/user-attachments/assets/bf6effd8-a216-4ae7-9cf1-5378ee192d8e
 
 
 ## Daftar Pustaka
