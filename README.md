@@ -32,7 +32,7 @@ Buatlah program yang mensimulasikan tiga thread downloader, di mana masing-masin
 -Input delay dibuat fleksibel agar user bisa mencoba berbagai kombinasi dan melihat hasil paralelismenya.<br>
 
 ## Pengerjaan
-###Thread
+### Thread
 Thread merupakan satuan eksekusi terkecil dalam proses yang memungkinkan program menjalankan beberapa alur kerja (task) secara paralel dalam satu ruang alamat (address space) yang sama. Berbeda dengan proses yang membutuhkan duplikasi memori saat membuat proses baru (forking), thread hanya membuat satu alur eksekusi baru namun tetap berbagi sumber daya seperti memori, file descriptor, dan heap dengan thread lainnya di dalam proses yang sama.
 
 Menurut Tanenbaum dan Bos (2015), setiap thread memiliki program counter, register, dan stack-nya sendiri, tetapi berbagi ruang alamat dan sumber daya lainnya dengan thread lain dalam proses yang sama. Hal ini membuat thread jauh lebih ringan dibanding proses karena tidak memerlukan alokasi memori baru secara keseluruhan.
