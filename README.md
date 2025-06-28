@@ -36,7 +36,7 @@ Buatlah program yang mensimulasikan tiga thread downloader, di mana masing-masin
 Thread, atau benang eksekusi, adalah unit dasar eksekusi dalam sebuah proses. Dalam model klasik, proses dianggap memiliki dua hal utama: pengelompokan resource (seperti file, memori, dll) dan aliran eksekusi. Thread merepresentasikan aliran eksekusi tersebut, dan memungkinkan satu proses menjalankan beberapa aktivitas secara quasi-parallel (seolah-olah paralel) dalam ruang alamat yang sama
 
 “The thread has a program counter that keeps track of which instruction to execute next... Although a thread must execute in some process, the thread and its process are different concepts and can be treated separately.”
-(Tanenbaum, 4th ed., hal. 103)<br>
+(Tanenbaum, 4th ed., 2015, hal. 103)<br>
 
 ### Keuntungan Thread
 -Efisiensi: Thread lebih ringan (lightweight) dibanding proses karena tidak perlu menggandakan seluruh ruang alamat.<br>
@@ -44,7 +44,7 @@ Thread, atau benang eksekusi, adalah unit dasar eksekusi dalam sebuah proses. Da
 -Berbagi Resource: Semua thread dalam proses yang sama berbagi ruang alamat, file descriptor, dan variabel global.<br>
 
 “In the former case, the threads share an address space and other resources... Because threads have some of the properties of processes, they are sometimes called lightweight processes.”
-(Tanenbaum, 4th ed., hal. 104)
+(Tanenbaum, 4th ed., 2015, hal. 104)
 ### Multithreading
 
 **Teori**<br>
