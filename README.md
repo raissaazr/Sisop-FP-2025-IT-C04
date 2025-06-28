@@ -33,13 +33,18 @@ Buatlah program yang mensimulasikan tiga thread downloader, di mana masing-masin
 
 ## Pengerjaan
 ### Thread
-Thread merupakan satuan eksekusi terkecil dalam proses yang memungkinkan program menjalankan beberapa alur kerja (task) secara paralel dalam satu ruang alamat (address space) yang sama. Berbeda dengan proses yang membutuhkan duplikasi memori saat membuat proses baru (forking), thread hanya membuat satu alur eksekusi baru namun tetap berbagi sumber daya seperti memori, file descriptor, dan heap dengan thread lainnya di dalam proses yang sama.
+Thread, atau benang eksekusi, adalah unit dasar eksekusi dalam sebuah proses. Dalam model klasik, proses dianggap memiliki dua hal utama: pengelompokan resource (seperti file, memori, dll) dan aliran eksekusi. Thread merepresentasikan aliran eksekusi tersebut, dan memungkinkan satu proses menjalankan beberapa aktivitas secara quasi-parallel (seolah-olah paralel) dalam ruang alamat yang sama
 
-Menurut Tanenbaum dan Bos (2015), setiap thread memiliki program counter, register, dan stack-nya sendiri, tetapi berbagi ruang alamat dan sumber daya lainnya dengan thread lain dalam proses yang sama. Hal ini membuat thread jauh lebih ringan dibanding proses karena tidak memerlukan alokasi memori baru secara keseluruhan.
+“The thread has a program counter that keeps track of which instruction to execute next... Although a thread must execute in some process, the thread and its process are different concepts and can be treated separately.”
+(Tanenbaum, 4th ed., hal. 103)<br>
 
-“Each thread has its own program counter, register set, and stack, but shares the address space and other resources with its fellow threads of the same process.”
-(Tanenbaum & Bos, 2015, hlm. 131)
+### Keuntungan Thread
+-Efisiensi: Thread lebih ringan (lightweight) dibanding proses karena tidak perlu menggandakan seluruh ruang alamat.<br>
+-Paralelisme: Dengan multithreading, beberapa aktivitas dapat terjadi bersamaan. Misalnya dalam kode di atas, tiga fungsi downloader_thread bisa berjalan secara paralel.<br>
+-Berbagi Resource: Semua thread dalam proses yang sama berbagi ruang alamat, file descriptor, dan variabel global.<br>
 
+“In the former case, the threads share an address space and other resources... Because threads have some of the properties of processes, they are sometimes called lightweight processes.”
+(Tanenbaum, 4th ed., hal. 104)
 ### Multithreading
 
 **Teori**<br>
