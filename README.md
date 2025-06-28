@@ -61,20 +61,22 @@ for (int i = 0; i < 3; i++) {
 }
 ```
 Kode ini meminta input delay dari pengguna, dan menyimpan ke dalam struktur data untuk masing-masing thread.<br>
-3. Setiap thread mencetak pesan mulai, melakukan `sleep()`, lalu mencetak pesan selesai
+3. Setiap fungsi akan dijalankan oleh setiap thread
 ```
 void* downloader_thread(void* arg) {
     ThreadData* data = (ThreadData*)arg;
 
     printf("Downloader %d: Memulai pengunduhan, akan membutuhkan waktu %d detik.\n", data->id, data->delay_seconds);
-    sleep(data->delay_seconds);
-    printf("Downloader %d: Pengunduhan selesai.\n", data->id);
 
-    return NULL;
-}
 ```
-Fungsi ini dijalankan oleh setiap thread. Ia mencetak pesan mulai, melakukan delay dengan sleep, lalu mencetak pesan selesai.<br>
-4. `pthread_join()` digunakan agar program utama menunggu semua thread selesai
+4. Fungsi `sleep`(unsigned int seconds)
+merupakan bagian dari POSIX dan digunakan untuk menunda eksekusi thread selama waktu tertentu (dalam satuan detik). Dalam konteks multithreading, sleep() sangat berguna. Ketika fungsi sleep() dipanggil dalam sebuah thread, thread tersebut akan diblokir selama durasi tertentu. Namun, ini tidak memblokir thread lain, sehingga eksekusi thread lain tetap bisa berjalan secara paralel, sesuai dengan mekanisme penjadwalan CPU.
+```
+    sleep(data->delay_seconds);
+```
+Fungsi `sleep()` digunakan untuk memblokir sementara eksekusi thread selama durasi tertentu. Menurut Stallings (2018), mekanisme seperti `sleep()` termasuk dalam voluntary blocking, yaitu metode di mana thread menyerahkan kontrol CPU secara sukarela selama periode tertentu, sehingga memungkinkan sistem operasi melakukan penjadwalan ulang pada thread lain (hal. 160, 210).<br>
+ 
+5. `pthread_join()` digunakan agar program utama menunggu semua thread selesai
 ```
 for (int i = 0; i < 3; i++) {
     pthread_join(threads[i], NULL);
