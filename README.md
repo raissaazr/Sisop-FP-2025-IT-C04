@@ -51,16 +51,21 @@ Pada C (POSIX), kita bisa membuat thread dengan library `pthread`. Fungsi pentin
 - `sleep()` untuk mensimulasikan delay/tunda
 
 Thread berguna untuk simulasi seperti download paralel, pemrosesan serentak, UI responsif, dll.<br>
-Dalam konteks sistem operasi modern, thread yang dibuat menggunakan pthread pada sistem seperti Linux adalah kernel-level threads, yang dikelola langsung oleh kernel dan dijadwalkan secara terpisah dari thread lain. Hal ini sesuai dengan penjelasan bahwa sebagian besar sistem operasi kontemporer—termasuk Linux, Windows, dan macOS—mendukung kernel threads, bukan hanya user threads (Silberschatz, Galvin, & Gagne, 2018, hlm. 149).
+Dalam konteks sistem operasi modern, thread yang dibuat menggunakan pthread pada sistem seperti Linux adalah kernel-level threads, yang dikelola langsung oleh kernel dan dijadwalkan secara terpisah dari thread lain. Hal ini sesuai dengan penjelasan bahwa sebagian besar sistem operasi kontemporer—termasuk Linux, Windows, dan macOS—mendukung kernel threads, bukan hanya user threads (Silberschatz et al., 2018, hlm. 149).
 
 **Solusi**
-1. Menggunakan `pthread` untuk membuat 3 thread downloader
+1. Menggunakan `pthread` untuk membuat 3 thread downloader<br>
+Standar POSIX Threads (Pthreads, IEEE 1003.1c) menyediakan antarmuka API untuk membuat dan menyinkronkan thread dalam bahasa C. Pthreads digunakan oleh berbagai sistem operasi seperti Linux, Solaris, macOS, dan Windows (melalui pustaka khusus). Dalam program Pthreads, fungsi `main()` akan membuat thread baru menggunakan `pthread_create()`, lalu thread tersebut akan menjalankan fungsi tertentu yang ditentukan saat pembuatan (Silberschatz et al., 2018, hlm. 152).
 ```c
 for (int i = 0; i < 3; i++) {
     pthread_create(&threads[i], NULL, downloader_thread, (void*)&thread_data[i]);
 }
 ```
-Kode ini membuat 3 thread secara paralel dengan `pthread_create`, dan setiap thread menjalankan fungsi `downloader_thread`.<br>
+Penjelasan:<br>
+    - Potongan kode di atas digunakan untuk membuat tiga buah thread menggunakan fungsi `pthread_create()` dari pustaka POSIX Thread. Perulangan dilakukan sebanyak tiga kali untuk mensimulasikan tiga proses pengunduhan paralel.<br>
+    - Setiap thread akan menjalankan fungsi `downloader_thread` secara independen, dengan argumen berupa `thread_data[i]` yang menyimpan informasi id dan delay_seconds. Argumen ini dikirim melalui pointer agar setiap thread memiliki data unik masing-masing.<br>
+    - Thread yang dibuat berjalan bersamaan (paralel) karena menggunakan konsep kernel-level threading, di mana setiap thread dijadwalkan langsung oleh sistem operasi. Pendekatan ini sesuai dengan model multithreading yang efisien dalam sistem modern seperti Linux.
+
 2. Masing-masing thread menerima input delay dari user
 ```c
 for (int i = 0; i < 3; i++) {
