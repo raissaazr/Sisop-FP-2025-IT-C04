@@ -32,6 +32,14 @@ Buatlah program yang mensimulasikan tiga thread downloader, di mana masing-masin
 -Input delay dibuat fleksibel agar user bisa mencoba berbagai kombinasi dan melihat hasil paralelismenya.<br>
 
 ## Pengerjaan
+
+Thread merupakan satuan eksekusi terkecil dalam proses yang memungkinkan program menjalankan beberapa alur kerja (task) secara paralel dalam satu ruang alamat (address space) yang sama. Berbeda dengan proses yang membutuhkan duplikasi memori saat membuat proses baru (forking), thread hanya membuat satu alur eksekusi baru namun tetap berbagi sumber daya seperti memori, file descriptor, dan heap dengan thread lainnya di dalam proses yang sama.
+
+Menurut Tanenbaum dan Bos (2015), setiap thread memiliki program counter, register, dan stack-nya sendiri, tetapi berbagi ruang alamat dan sumber daya lainnya dengan thread lain dalam proses yang sama. Hal ini membuat thread jauh lebih ringan dibanding proses karena tidak memerlukan alokasi memori baru secara keseluruhan.
+
+“Each thread has its own program counter, register set, and stack, but shares the address space and other resources with its fellow threads of the same process.”
+(Tanenbaum & Bos, 2015, hlm. 131)
+
 ### Multithreading
 
 **Teori**<br>
@@ -46,14 +54,14 @@ Thread berguna untuk simulasi seperti download paralel, pemrosesan serentak, UI 
 
 **Solusi**
 1. Menggunakan `pthread` untuk membuat 3 thread downloader
-```
+```c
 for (int i = 0; i < 3; i++) {
     pthread_create(&threads[i], NULL, downloader_thread, (void*)&thread_data[i]);
 }
 ```
 Kode ini membuat 3 thread secara paralel dengan `pthread_create`, dan setiap thread menjalankan fungsi `downloader_thread`.<br>
 2. Masing-masing thread menerima input delay dari user
-```
+```c
 for (int i = 0; i < 3; i++) {
     thread_data[i].id = i + 1;
     printf("Masukkan durasi pengunduhan untuk Downloader %d (dalam detik): ", thread_data[i].id);
@@ -62,7 +70,7 @@ for (int i = 0; i < 3; i++) {
 ```
 Kode ini meminta input delay dari pengguna, dan menyimpan ke dalam struktur data untuk masing-masing thread.<br>
 3. Setiap fungsi akan dijalankan oleh setiap thread
-```
+```c
 void* downloader_thread(void* arg) {
     ThreadData* data = (ThreadData*)arg;
 
@@ -71,17 +79,39 @@ void* downloader_thread(void* arg) {
 ```
 4. Fungsi `sleep`(unsigned int seconds)
 merupakan bagian dari POSIX dan digunakan untuk menunda eksekusi thread selama waktu tertentu (dalam satuan detik). Dalam konteks multithreading, sleep() sangat berguna. Ketika fungsi sleep() dipanggil dalam sebuah thread, thread tersebut akan diblokir selama durasi tertentu. Namun, ini tidak memblokir thread lain, sehingga eksekusi thread lain tetap bisa berjalan secara paralel, sesuai dengan mekanisme penjadwalan CPU.
-```
+```c
     sleep(data->delay_seconds);
 ```
 Fungsi `sleep()` digunakan untuk memblokir sementara eksekusi thread selama durasi tertentu. Menurut Stallings (2018), mekanisme seperti `sleep()` termasuk dalam voluntary blocking, yaitu metode di mana thread menyerahkan kontrol CPU secara sukarela selama periode tertentu, sehingga memungkinkan sistem operasi melakukan penjadwalan ulang pada thread lain (hal. 160, 210).<br>
  
 5. `pthread_join()` digunakan agar program utama menunggu semua thread selesai
+
+Quote dari Bryant & O'Hallaron (2016) hal. 1011:
 ```
+"The pthread_join function blocks until thread tid terminates, assigns the generic
+(void *) pointer returned by the thread routine to the location pointed to by
+thread_return, and then reaps any memory resources held by the terminated
+thread."
+```
+Fungsi `pthread_join` akan menghentikan sementara (block) eksekusi thread pemanggil (biasanya thread utama) hingga thread dengan ID `tid` selesai berjalan. Setelah thread `tid` selesai, fungsi ini akan:
+
+- Menyimpan nilai kembalian (berupa pointer `void*`) dari fungsi yang dijalankan thread ke variabel yang ditunjuk oleh `thread_return`.
+
+- Membersihkan (reap) semua sumber daya memori yang digunakan oleh thread yang telah berakhir.
+
+```c
 for (int i = 0; i < 3; i++) {
     pthread_join(threads[i], NULL);
 }
 ```
+Pada kode di atas:
+
+- Program utama akan menunggu hingga thread threads[i] selesai.
+
+- Karena parameter kedua adalah NULL, nilai kembalian thread tidak disimpan.
+
+- Sumber daya thread (seperti stack) akan dibebaskan setelah selesai.
+
 Looping ini memastikan program utama menunggu semua thread downloader selesai sebelum mencetak "Program berakhir".
 
 ### Output
@@ -109,7 +139,7 @@ https://github.com/user-attachments/assets/f2884791-e4b9-4438-bae1-82df5056bafd
 ### Stallings, W. (2018). Operating Systems: Internals and Design Principles (9th ed.). Pearson.<br>
 
 
-### Randal E. Bryant, David R. O’Hallaron. (2016). Computer Systems. A Programmer’s Perspective (3rd ed.). Pearson.
+### Randal E. Bryant, David R. O’Hallaron. (2016). Computer Systems. A Programmer’s Perspective (3rd ed.). Pearson.<br>
 
 
-
+### Tanenbaum, A. S., & Bos, H. (2015). Modern Operating Systems (4th ed.). Pearson Education.<br>
