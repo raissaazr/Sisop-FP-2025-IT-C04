@@ -56,11 +56,11 @@ Pada C (POSIX), kita bisa membuat thread dengan library `pthread`. Fungsi pentin
 - `sleep()` untuk mensimulasikan delay/tunda
 
 Thread berguna untuk simulasi seperti download paralel, pemrosesan serentak, UI responsif, dll.<br>
-Dalam konteks sistem operasi modern, thread yang dibuat menggunakan pthread pada sistem seperti Linux adalah kernel-level threads, yang dikelola langsung oleh kernel dan dijadwalkan secara terpisah dari thread lain. Hal ini sesuai dengan penjelasan bahwa sebagian besar sistem operasi kontemporer—termasuk Linux, Windows, dan macOS—mendukung kernel threads, bukan hanya user threads (Silberschatz et al., 2018, hlm. 149).
+Dalam konteks sistem operasi modern, thread yang dibuat menggunakan pthread pada sistem seperti Linux adalah kernel-level threads, yang dikelola langsung oleh kernel dan dijadwalkan secara terpisah dari thread lain. Hal ini sesuai dengan penjelasan bahwa sebagian besar sistem operasi kontemporer—termasuk Linux, Windows, dan macOS—mendukung kernel threads, bukan hanya user threads (Silberschatz et al., 2018, hal. 149).
 
 **Solusi**
 1. Menggunakan `pthread` untuk membuat 3 thread downloader<br>
-Standar POSIX Threads (Pthreads, IEEE 1003.1c) menyediakan antarmuka API untuk membuat dan menyinkronkan thread dalam bahasa C. Pthreads digunakan oleh berbagai sistem operasi seperti Linux, Solaris, macOS, dan Windows (melalui pustaka khusus). Dalam program Pthreads, fungsi `main()` akan membuat thread baru menggunakan `pthread_create()`, lalu thread tersebut akan menjalankan fungsi tertentu yang ditentukan saat pembuatan (Silberschatz et al., 2018, hlm. 152).
+Standar POSIX Threads (Pthreads, IEEE 1003.1c) menyediakan antarmuka API untuk membuat dan menyinkronkan thread dalam bahasa C. Pthreads digunakan oleh berbagai sistem operasi seperti Linux, Solaris, macOS, dan Windows (melalui pustaka khusus). Dalam program Pthreads, fungsi `main()` akan membuat thread baru menggunakan `pthread_create()`, lalu thread tersebut akan menjalankan fungsi tertentu yang ditentukan saat pembuatan (Silberschatz et al., 2018, hal. 152).
 ```c
 for (int i = 0; i < 3; i++) {
     pthread_create(&threads[i], NULL, downloader_thread, (void*)&thread_data[i]);
@@ -89,6 +89,8 @@ void* downloader_thread(void* arg) {
     printf("Downloader %d: Memulai pengunduhan, akan membutuhkan waktu %d detik.\n", data->id, data->delay_seconds);
 
 ```
+Fungsi akan dijalankan oleh setiap thread setelah dibuat menggunakan `pthread_create()`. Fungsi ini menerima satu argumen bertipe `void*`, lalu dikonversi (typecast) menjadi pointer ke struktur `ThreadData`. Setiap thread dapat mengakses datanya masing-masing, yaitu id untuk menandai nomor downloader, dan delay_seconds untuk menentukan durasi simulasi unduh. Fungsi ini mencetak pesan awal proses pengunduhan, lalu melanjutkan proses simulasi delay menggunakan `sleep()`.
+
 4. Fungsi `sleep`(unsigned int seconds)
 merupakan bagian dari POSIX dan digunakan untuk menunda eksekusi thread selama waktu tertentu (dalam satuan detik). Dalam konteks multithreading, sleep() sangat berguna. Ketika fungsi sleep() dipanggil dalam sebuah thread, thread tersebut akan diblokir selama durasi tertentu. Namun, ini tidak memblokir thread lain, sehingga eksekusi thread lain tetap bisa berjalan secara paralel, sesuai dengan mekanisme penjadwalan CPU.
 ```c
