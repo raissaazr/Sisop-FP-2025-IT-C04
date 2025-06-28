@@ -50,7 +50,8 @@ Pada C (POSIX), kita bisa membuat thread dengan library `pthread`. Fungsi pentin
 - `pthread_join()` untuk menunggu thread selesai
 - `sleep()` untuk mensimulasikan delay/tunda
 
-Thread berguna untuk simulasi seperti download paralel, pemrosesan serentak, UI responsif, dll.
+Thread berguna untuk simulasi seperti download paralel, pemrosesan serentak, UI responsif, dll.<br>
+Dalam konteks sistem operasi modern, thread yang dibuat menggunakan pthread pada sistem seperti Linux adalah kernel-level threads, yang dikelola langsung oleh kernel dan dijadwalkan secara terpisah dari thread lain. Hal ini sesuai dengan penjelasan bahwa sebagian besar sistem operasi kontemporer—termasuk Linux, Windows, dan macOS—mendukung kernel threads, bukan hanya user threads (Silberschatz, Galvin, & Gagne, 2018, hlm. 149).
 
 **Solusi**
 1. Menggunakan `pthread` untuk membuat 3 thread downloader
