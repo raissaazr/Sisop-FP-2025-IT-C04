@@ -75,6 +75,7 @@ for (int i = 0; i < 3; i++) {
 }
 ```
 Kode ini meminta input delay dari pengguna, dan menyimpan ke dalam struktur data untuk masing-masing thread.<br>
+
 3. Setiap fungsi akan dijalankan oleh setiap thread
 ```c
 void* downloader_thread(void* arg) {
